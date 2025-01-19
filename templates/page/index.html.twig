@@ -1,0 +1,14 @@
+{# extends #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div>
+    <button onclick="setLanguage('fr')">Français</button>
+    <button onclick="setLanguage('it')">Italien</button>
+    <button onclick="setLanguage('de')">Allemand</button>
+</div>
+    <h1>Traduction Dynamique avec Twig</h1>
+    <p>{{ trans('test', app.request.locale) }}</p>
+
+{% endblock %}
