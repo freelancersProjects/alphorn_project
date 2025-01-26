@@ -1,0 +1,9 @@
+{# extends #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Traduction Dynamique avec Twig</h1>
+    <p>{{ trans('header_title_1', app.request.locale) }}</p>
+
+{% endblock %}
