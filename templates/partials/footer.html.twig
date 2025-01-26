@@ -1,0 +1,53 @@
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Section gauche : Logo -->
+        <div class="footer-left">
+            <div class="footer-logo">
+                <img src="{{ asset('images/logo.png') }}" alt="Alphorn Project Logo">
+            </div>
+        </div>
+
+        <div class="footer-right">
+            <div id="footer-map"></div>
+            <div class="footer-social-icons">
+                <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="{{ asset('images/icons/instagram.svg') }}" alt="Instagram Icon">
+                </a>
+                <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="{{ asset('images/icons/facebook.svg') }}" alt="Facebook Icon">
+                </a>
+                <a href="https://www.youtube.com" target="_blank" aria-label="YouTube">
+                    <img src="{{ asset('images/icons/youtube.svg') }}" alt="YouTube Icon">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <hr class="footer-divider">
+        <div class="footer-bottom-content-text">
+<p>© {{ trans('footer_allright', app.request.locale) }}</p>
+
+
+        <p>
+            <a href="#confidentialite">{{ trans('footer_confidentiality', app.request.locale) }}</a> &middot;
+            <a href="#mentions-legales">{{ trans('footer_legal_notice', app.request.locale) }}</a>
+        </p>
+        </div>
+    </div>
+</footer>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+<script>
+    function initMap() {
+        const location = { lat: 44.6766, lng: 6.6502 };
+        const map = new google.maps.Map(document.getElementById("footer-map"), {
+            zoom: 14,
+            center: location,
+        });
+        new google.maps.Marker({
+            position: location,
+            map: map,
+        });
+    }
+    window.onload = initMap;
+</script>

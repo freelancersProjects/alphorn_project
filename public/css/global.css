@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
+:root {
+  --forest-green: #2f4f4f;
+  --saddle-brown: #8b5a2b;
+  --sky-blue: #5dade2;
+  --beige: #fff5e8;
+  --white: #fff;
+  --black: #000;
+}
