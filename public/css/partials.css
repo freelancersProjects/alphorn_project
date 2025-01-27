@@ -6,7 +6,7 @@ header {
   font-family: "Cormorant Garamond", serif;
 }
 
-.container {
+.container-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
