@@ -15,7 +15,7 @@ class HomeController extends AbstractController
         $this->translationService = $translationService;
     }
 
-    #[Route('/', name: 'home')]
+    #[Route('/', name: 'app_home')]
    public function index(): Response
     {
         return $this->render('page/index.html.twig');
