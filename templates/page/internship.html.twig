@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les stages
+{% endblock %}
+
+{% block body %}
+
+	<div class="text-center my-2">
+		<h1 class="font-family-fairplay">Les stages</h1>
+	</div>
+
+	{# Add filter here #}
+	<div>Les filtres</div>
+
+    {% for internship in internships %}
+	    <div class="card-container justify-content-evenly align-items-center flex-wrap mb-5">
+	    	<div class="card">
+	    		<img src="{{ asset('images/image_banner.png') }}" class="card-img-top" alt="{{ internship.title }}">
+	    		<div class="card-content">
+	    			<h2 class="card-title">{{ internship.title }}</h2>
+	    			<p class="card-date mb-1">{{ internship.date }}</p>
+	    			<p class="card-text">{{ internship.description }}</p>
+                    <div class="text-center">
+	    			    <button class="btn btn-primary">Lire la suite</button>
+                    </div>
+	    		</div>
+	    	</div>
+	    </div>
+    {% endfor %}
+
+{% endblock %}
