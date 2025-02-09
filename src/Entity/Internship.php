@@ -32,6 +32,9 @@ class Internship
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $third_image = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +108,18 @@ class Internship
     public function setThirdImage(?string $third_image): static
     {
         $this->third_image = $third_image;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }
