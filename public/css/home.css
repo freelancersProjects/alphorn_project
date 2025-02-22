@@ -1,0 +1,73 @@
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    background-image: url('/images/image_banner.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display";
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); 
+}
+
+.hero-title {
+    color: var(--white);
+    font-size: 54px;
+    font-weight: 600;
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Section principale */
+.aboutUs {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* Titre */
+.about-title {
+    font-size: 54px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.6;
+    max-width: 50%;
+}
+
+.about-image {
+    width: 50%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.about-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+

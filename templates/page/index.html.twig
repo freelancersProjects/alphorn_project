@@ -1,9 +1,25 @@
-{# extends #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <h1>Traduction Dynamique avec Twig</h1>
-    <p>{{ trans('test', app.request.locale) }}</p>
-
+<div class="hero mb-5">
+    <div class="overlay"></div>
+    <h1 class="hero-title mx-5 my-5">ALPHORN PROJECT</h1>
+</div>
+<div class="aboutUs">
+    <h2 class="about-title">QUI SOMMES-NOUS ?</h2>
+    <div class="about-content">
+        <p class="about-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus urna quis suscipit convallis. Praesent lobortis sagittis dapibus. 
+            Phasellus sed lacus orci. In hac habitasse platea dictumst. In at pellentesque orci. Aenean feugiat sagittis diam, pellentesque posuere 
+            elit facilisis at. Proin ac risus massa. Suspendisse consequat ac est quis ullamcorper. Vestibulum at sem nec odio sodales ullamcorper 
+            nec non est. Mauris lobortis leo et enim aliquam, vitae mattis metus consequat. Proin consectetur lacus nec velit vestibulum accumsan. 
+            Quisque volutpat faucibus nulla sed mattis.
+        </p>
+        <img class="about-image" src="{{ asset('images/image_pres1.png') }}" alt="Alphorn">
+    </div>
+    <div class="about-buttons">
+        <button class="btn primary">Prendre des cours</button>
+        <button class="btn secondary">Cor hybrid</button>
+    </div>
+</div>
 {% endblock %}
