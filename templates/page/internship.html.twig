@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les stages
+{% block title %}{{ trans('header_title_4', app.request.locale) }}
 {% endblock %}
 
 {% block body %}
 
 	<div class="main-internship">
 		<div class="text-center my-2">
-			<h1 class="global-title">Les stages</h1>
+			<h1 class="global-title">{{ trans('header_title_4', app.request.locale) }}</h1>
 		</div>
 
 		{% if internships|length > 0 %}
@@ -31,7 +31,7 @@
 			</div>
 		{% else %}
 			<div class="text-center my-5">
-				<p>Aucun stage n'a été trouvé</p>
+				<p>Aucun stage n'a été trouvé pour le moment.</p>
 			</div>
 		{% endif %}
 	</div>
