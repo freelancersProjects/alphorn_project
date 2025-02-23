@@ -27,19 +27,18 @@
     left: 0;
 }
 
-/* Section principale */
 .aboutUs {
     width: 80%;
     margin: 50px auto;
     text-align: center;
 }
 
-/* Titre */
 .about-title {
     font-size: 54px;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 30px;
+    font-family: "Playfair Display";
 }
 
 .about-content {
@@ -61,7 +60,6 @@
     width: 50%;
     max-height: 350px;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 .about-buttons {
@@ -69,5 +67,6 @@
     display: flex;
     justify-content: center;
     gap: 20px;
+    float: left;
 }
 
