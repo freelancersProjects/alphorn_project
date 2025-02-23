@@ -1,7 +1,9 @@
 <header>
 	<div class="container-header">
 		<div class="logo">
-			<img src="{{ asset('images/logo.png') }}" alt="Asphorn Project Logo">
+			<a href="{{ path('app_home') }}">
+				<img src="{{ asset('images/logo.png') }}" alt="Alphorn Project Logo">
+			</a>
 		</div>
 		<nav class="navbar">
 			<ul>
@@ -10,7 +12,7 @@
 				<li><a href="#cor-hybrid">{{ trans('header_title_3', app.request.locale) }}</a></li>
 				<li><a href="stage">{{ trans('header_title_4', app.request.locale) }}</a></li>
 				<li><a href="actualites">{{ trans('header_title_5', app.request.locale) }}</a></li>
-				<li><a href="#temoignages">{{ trans('header_title_6', app.request.locale) }}</a></li>
+				<li><a href="temoignages">{{ trans('header_title_6', app.request.locale) }}</a></li>
 				<li><a href="#contact">{{ trans('header_title_7', app.request.locale) }}</a></li>
 			</ul>
 		</nav>

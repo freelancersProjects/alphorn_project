@@ -35,6 +35,9 @@ class Testimonial
     #[ORM\ManyToOne(inversedBy: 'fk_testimonial')]
     private ?User $fk_id_user = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $date = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Testimonial
     public function setFkIdUser(?User $fk_id_user): static
     {
         $this->fk_id_user = $fk_id_user;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): static
+    {
+        $this->date = $date;
 
         return $this;
     }

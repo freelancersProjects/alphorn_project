@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ trans('header_title_6', app.request.locale) }}
+{% endblock %}
+
+{% block body %}
+
+	<div class="main-new">
+		<div class="text-center my-2">
+			<h1 class="global-title">{{ trans('header_title_6', app.request.locale) }}</h1>
+		</div>
+
+		{% if testimonials|length > 0 %}
+			{# Add filter here #}
+			<div>Les filtres</div>
+
+			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
+				{% for testimonial in testimonials %}
+					<div class="card">
+						<img src="{{ asset('images/' ~ testimonial.main_image) }}" class="card-img-top" alt="{{ testimonial.title }}">
+						<div class="card-content">
+							<h2 class="card-title">{{ testimonial.title }}</h2>
+							<p class="card-date mb-1">{{ testimonial.date }}</p>
+							<p class="card-text">{{ testimonial.description }}</p>
+							<div class="text-center">
+								<button class="btn-card">Lire la suite</button>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="text-center my-5">
+				<p>{{ trans('text_no_data_testimonials', app.request.locale) }}</p>
+			</div>
+		{% endif %}
+	</div>
+
+{% endblock %}
