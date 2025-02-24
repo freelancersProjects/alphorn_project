@@ -60,12 +60,42 @@ body {
   align-items: center;
 }
 
+.left {
+  justify-content: flex-start;
+  float: left !important;
+}
+
+.right {
+  justify-content: flex-end;
+  float: right !important;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
 }
 
 .text-center {
   text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mx-1 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mx-2 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.mx-5 {
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 
 .my-1 {
@@ -105,22 +135,44 @@ body {
   line-height: normal;
 }
 
-.global-btn-green {
-  background-color: var(--forest-green);
+.title-home {
+    font-size: 54px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+    font-family: "Playfair Display";
+}
+
+.global-btn {
   border: none;
   border-radius: 20px;
-  color: var(--white);
   cursor: pointer;
-  display: inline-block;
-  font-size: 16px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
   margin: 0.5rem;
-  padding: 0.5rem 3rem;
+  padding: 1.2rem 3.5rem;
   text-align: center;
   text-decoration: none;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  min-width: 200px;
+  height: 60px;
+  white-space: nowrap;
 }
+
+.global-btn-green {
+  background-color: var(--forest-green);
+  color: var(--white);
+}
+
+.global-btn-beige {
+  background-color: var(--beige);
+  color: var(--black);
+}
+
 
 /* Card for application web */
 
