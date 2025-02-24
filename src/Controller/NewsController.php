@@ -2,14 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\Internship;
-use App\Repository\InternshipRepository;
+use App\Repository\NewsRepository;
 use App\Service\TranslationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class InternshipController extends AbstractController
+class NewsController extends AbstractController
 {
     private $translationService;
 
@@ -18,13 +17,13 @@ class InternshipController extends AbstractController
         $this->translationService = $translationService;
     }
 
-    #[Route('/stage', name: 'app_internship')]
-    public function index(InternshipRepository $internshipRepository): Response
+    #[Route('/actualites', name: 'app_news')]
+    public function index(NewsRepository $newsRepository): Response
     {
-        $internships = $internshipRepository->findAll();
+        $news = $newsRepository->findAll();
 
-        return $this->render('page/internship.html.twig', [
-            'internships' => $internships,
+        return $this->render('page/news.html.twig', [
+            'news' => $news,
         ]);
     }
 }

@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les stages
+{% block title %}
+	{{ trans('header_title_4', app.request.locale) }}
 {% endblock %}
 
 {% block body %}
 
 	<div class="main-internship">
 		<div class="text-center my-2">
-			<h1 class="global-title">Les stages</h1>
+			<h1 class="global-title">{{ trans('header_title_4', app.request.locale) }}</h1>
 		</div>
 
 		{% if internships|length > 0 %}
@@ -17,10 +18,10 @@
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
 				{% for internship in internships %}
 					<div class="card">
-						<img src="{{ asset('images/image_banner.png') }}" class="card-img-top" alt="{{ internship.title }}">
+						<img src="{{ asset('images/' ~ intership.main_image) }}" class="card-img-top" alt="{{ internship.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ internship.title }}</h2>
-							<p class="card-date mb-1">{{ internship.date }}</p>
+							<p class="card-date my-1">Du : {{ internship.date_start }} - Au : {{ internship.date_end }}</p>
 							<p class="card-text">{{ internship.description }}</p>
 							<div class="text-center">
 								<button class="btn-card">Lire la suite</button>
@@ -31,7 +32,7 @@
 			</div>
 		{% else %}
 			<div class="text-center my-5">
-				<p>Aucun stage n'a été trouvé</p>
+				<p>{{ trans('text_no_data_internships', app.request.locale) }}</p>
 			</div>
 		{% endif %}
 	</div>
