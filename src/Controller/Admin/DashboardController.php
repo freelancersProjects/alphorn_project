@@ -11,6 +11,7 @@ use App\Entity\News;
 use App\Entity\User;
 use App\Entity\Contact;
 use App\Entity\Internship;
+use App\Entity\Translation;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')]
@@ -31,7 +32,10 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        
+
+        yield MenuItem::section('Traductions');
+        yield MenuItem::linkToCrud('Les traductions', 'fas fa-language', Translation::class);
+
         yield MenuItem::section('Utilisateurs');
         yield MenuItem::linkToCrud('Les utilisateurs', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Contact', 'fas fa-envelope', Contact::class);
