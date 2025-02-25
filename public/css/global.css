@@ -2,7 +2,10 @@
   --forest-green: #2f4f4f;
   --saddle-brown: #8b5a2b;
   --sky-blue: #5dade2;
+  --dark-green: #253d3d;
   --beige: #fff5e8;
+  --dark-text: #343434;
+  --gray: #F4F4F4;
   --white: #fff;
   --black: #000;
 }
@@ -165,9 +168,14 @@ body {
 
 .global-btn-green {
   background-color: var(--forest-green);
+  transition: all 0.3s ease-in-out;
   color: var(--white);
 }
 
+.global-btn-green:hover {
+  background-color: var(--dark-green);
+  transition: all 0.3s ease-in-out;
+}
 .global-btn-beige {
   background-color: var(--beige);
   color: var(--black);
