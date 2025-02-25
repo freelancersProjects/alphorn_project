@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div
+		class="contact-container">
+		<div class="contact-form-section">
+			<h2 class="contact-title font-family-playfair">{{ trans('contact_form_title', app.request.locale) }}</h2>
+
+			{% for message in app.flashes('success') %}
+				<p class="flash-success">{{ message }}</p>
+			{% endfor %}
+			{% for message in app.flashes('error') %}
+				<p class="flash-error">{{ message }}</p>
+			{% endfor %}
+
+			<form class="contact-form" method="POST" action="{{ path('app_contact') }}">
+                <input type="text" name="name" placeholder="{{ trans('contact_form_name', app.request.locale) }}" required>
+                <input type="email" name="email" placeholder="{{ trans('contact_form_email', app.request.locale) }}" required>
+                <input type="text" name="subject" placeholder="{{ trans('contact_form_subject', app.request.locale) }}" required>
+                <textarea name="message" placeholder="{{ trans('contact_form_message', app.request.locale) }}" rows="6" required></textarea>
+                <button type="submit" class="global-btn-green global-btn contact-button">{{ trans('button_send', app.request.locale) }}</button>
+			</form>
+		</div>
+
+		<div class="contact-info font-family-playfair">
+			<h3>{{ trans('contact_us_form', app.request.locale) }}</h3>
+			<p>
+				<strong>{{ trans('contact_us_phone_form', app.request.locale) }} :</strong>
+				+33 1 23 45 67 89</p>
+            <p>
+                <strong>{{ trans('contact_us_email_form', app.request.locale) }} :</strong>
+                contact@alphorn-project.com</p>
+            <p>
+                <strong>{{ trans('contact_us_adress_form', app.request.locale) }} :</strong>
+                123 Rue des Montagnes, 75000 Paris, France</p>
+		</div>
+	</div>
+{% endblock %}
+

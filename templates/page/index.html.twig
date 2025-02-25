@@ -1,9 +1,86 @@
-{# extends #}
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="hero mb-5">
+    <div class="overlay"></div>
+    <h1 class="hero-title mx-5 my-5">ALPHORN PROJECT</h1>
+</div>
+<div class="aboutUs">
+<h2 class="title-home">{{ trans('about_us_title', app.request.locale) }}</h2>
 
-    <h1>Traduction Dynamique avec Twig</h1>
-    <p>{{ trans('test', app.request.locale) }}</p>
+	<div class="about-content">
+		<div class="about-text-container">
+			<p class="about-text">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus urna quis suscipit convallis.
+				                Praesent lobortis sagittis dapibus. Phasellus sed lacus orci. In hac habitasse platea dictumst.
+				                In at pellentesque orci. Aenean feugiat sagittis diam, pellentesque posuere elit facilisis at.
+				                Proin ac risus massa. Suspendisse consequat ac est quis ullamcorper. Vestibulum at sem nec odio
+				                sodales ullamcorper nec non est. Mauris lobortis leo et enim aliquam, vitae mattis metus consequat.
+				                Proin consectetur lacus nec velit vestibulum accumsan. Quisque volutpat faucibus nulla sed mattis.
+			</p>
+			<div class="about-buttons">
+                <button class="global-btn-green global-btn primary">{{ trans('about_us_courses_button', app.request.locale) }}</button>
+                <button class="global-btn-beige global-btn secondary">{{ trans('about_us_cor_hybrid_button', app.request.locale) }}</button>
+			</div>
+		</div>
+		<img class="about-image" src="{{ asset('images/image_pres1.png') }}" alt="Alphorn">
+	</div>
+</div>
+
+<div class="aboutUs">
+	<div class="about-content">
+		<img class="about-image" src="{{ asset('images/image_pres2.png') }}" alt="Alphorn">
+		<div class="about-text-container">
+			<p class="about-text">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus urna quis suscipit convallis.
+				                Praesent lobortis sagittis dapibus. Phasellus sed lacus orci. In hac habitasse platea dictumst.
+				                In at pellentesque orci. Aenean feugiat sagittis diam, pellentesque posuere elit facilisis at.
+				                Proin ac risus massa. Suspendisse consequat ac est quis ullamcorper. Vestibulum at sem nec odio
+				                sodales ullamcorper nec non est. Mauris lobortis leo et enim aliquam, vitae mattis metus consequat.
+				                Proin consectetur lacus nec velit vestibulum accumsan. Quisque volutpat faucibus nulla sed mattis.
+			</p>
+			<div class="about-buttons right">
+                <button class="global-btn-beige global-btn secondary">{{ trans('about_us_testimoniale_button', app.request.locale) }}</button>
+                <button class="global-btn-green global-btn primary">{{ trans('about_us_accessory_button', app.request.locale) }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="news-container">
+    <h2 class="title-home">{{ trans('actuality_title', app.request.locale) }}</h2>
+{% if news|length > 0 %}
+	<div>Les filtres</div>
+
+	<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
+		{% for new in news|slice(0, 3) %}
+			<div class="card">
+				<img src="{{ asset('images/' ~ new.main_image) }}" class="card-img-top" alt="{{ new.title }}">
+				<div class="card-content">
+					<h2 class="card-title">{{ new.title }}</h2>
+					<p class="card-date mb-1">{{ new.date }}</p>
+					<p class="card-text">{{ new.description }}</p>
+					<div class="text-center">
+						<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+    <button class="global-btn-beige global-btn secondary">Toutes les actualités</button>
+	</div>
+{% else %}
+	<div class="text-center my-5">
+		<p>{{ trans('text_no_data_news', app.request.locale) }}</p>
+	</div>
+{% endif %}
+</div>
+<div class="contact-section">
+    <div class="contact-text">
+        <h2>{{ trans('home_questions_title', app.request.locale) }}</h2>
+        <p>{{ trans('home_questions_subtitle', app.request.locale) }}</p>
+    </div>
+    <button class="contact-button">{{ trans('home_questions_button', app.request.locale) }}</button>
+</div>
+
+
 
 {% endblock %}

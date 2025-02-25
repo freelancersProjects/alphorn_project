@@ -1,0 +1,114 @@
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    width: 90%;
+    margin: 50px auto;
+    gap: 40px;
+}
+
+.contact-form-section {
+    flex: 2;
+    background: var(--white);
+    padding: 40px 50px;
+    min-width: 400px;
+    border-right: 1px solid var(--gray);
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.contact-title, .contact-info h3 {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: left;
+    width: 100%;
+}
+
+.contact-title {
+    text-align: center;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background: var(--gray);
+    font-family: 'Roboto', sans-serif;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--dark-text);
+    font-size: 18px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+}
+
+.contact-button {
+    border-radius: 5px;
+    font-size: 18px;
+    padding: 15px;
+    background-color: var(--forest-green);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-button:hover {
+    background-color: var(--dark-green);
+}
+
+.contact-info {
+    flex: 1;
+    background: var(--light-beige);
+    padding: 30px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    text-align: left;
+    min-width: 300px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+    }
+
+    .contact-form-section {
+        min-width: 100%;
+    }
+
+    .contact-info {
+        text-align: center;
+        min-width: 100%;
+    }
+}
