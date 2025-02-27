@@ -1,27 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ trans('header_title_5', app.request.locale) }}
+{% block title %}
+	{{ trans('header_title_6', app.request.locale) }}
 {% endblock %}
 
 {% block body %}
 
 	<div class="main-new">
 		<div class="text-center my-2">
-			<h1 class="global-title">{{ trans('header_title_5', app.request.locale) }}</h1>
+			<h1 class="global-title">{{ trans('header_title_6', app.request.locale) }}</h1>
 		</div>
 
-		{% if news|length > 0 %}
+		{% if testimonials|length > 0 %}
 			{# Add filter here #}
 			<div>Les filtres</div>
 
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
-				{% for new in news %}
+				{% for testimonial in testimonials %}
 					<div class="card">
-						<img src="{{ asset('images/' ~ new.main_image) }}" class="card-img-top" alt="{{ new.title }}">
+						<img src="{{ asset('images/' ~ testimonial.main_image) }}" class="card-img-top" alt="{{ testimonial.title }}">
 						<div class="card-content">
-							<h2 class="card-title">{{ new.title }}</h2>
-							<p class="card-date mb-1">{{ new.date }}</p>
-							<p class="card-text">{{ new.description }}</p>
+							<h2 class="card-title">{{ testimonial.title }}</h2>
+							<p class="card-date mb-1">{{ testimonial.date }}</p>
+							<p class="card-text">{{ testimonial.description }}</p>
 							<div class="text-center">
 								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>
 							</div>
@@ -31,7 +32,7 @@
 			</div>
 		{% else %}
 			<div class="text-center my-5">
-				<p>{{ trans('text_no_data_news', app.request.locale) }}</p>
+				<p>{{ trans('text_no_data_testimonials', app.request.locale) }}</p>
 			</div>
 		{% endif %}
 	</div>

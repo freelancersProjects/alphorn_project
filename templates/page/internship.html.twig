@@ -24,7 +24,7 @@
 							<p class="card-date my-1">Du : {{ internship.date_start }} - Au : {{ internship.date_end }}</p>
 							<p class="card-text">{{ internship.description }}</p>
 							<div class="text-center">
-								<button class="btn-card">Lire la suite</button>
+								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>
 							</div>
 						</div>
 					</div>
