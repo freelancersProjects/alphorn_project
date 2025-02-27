@@ -34,6 +34,9 @@ class Course
     #[ORM\OneToMany(targetEntity: CourseBlock::class, mappedBy: 'course')]
     private Collection $courseBlocks;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->courseBlocks = new ArrayCollection();
@@ -121,4 +124,21 @@ class Course
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function __toString(): string {
+        return $this->title;
+    }
 }
+
