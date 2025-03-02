@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ trans('header_title_3', app.request.locale) }}
+{% endblock %}
+
+{% block body %}
+	<div class="main-hybrid-horn">
+		<div class="aboutUs">
+			<div class="text-center my-2">
+				<h1 class="global-title">{{ trans('header_title_3', app.request.locale) }}</h1>
+			</div>
+
+			<div class="about-content">
+				<div class="about-text-container">
+					<p class="about-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus urna quis suscipit convallis.
+						Praesent lobortis sagittis dapibus. Phasellus sed lacus orci. In hac habitasse platea dictumst.
+						In at pellentesque orci. Aenean feugiat sagittis diam, pellentesque posuere elit facilisis at.
+						Proin ac risus massa. Suspendisse consequat ac est quis ullamcorper. Vestibulum at sem nec odio
+						sodales ullamcorper nec non est. Mauris lobortis leo et enim aliquam, vitae mattis metus consequat.
+						Proin consectetur lacus nec velit vestibulum accumsan. Quisque volutpat faucibus nulla sed mattis.
+					</p>
+					<div class="about-buttons">
+						<button class="global-btn-green global-btn primary">{{ trans('about_us_courses_button', app.request.locale) }}</button>
+						<button class="global-btn-beige global-btn secondary">{{ trans('header_title_4', app.request.locale) }}</button>
+					</div>
+				</div>
+				<img class="about-image" src="{{ asset('images/image_pres1.png') }}" alt="Alphorn">
+			</div>
+		</div>
+
+		<div class="aboutUs">
+			<div class="about-content">
+				<img class="about-image" src="{{ asset('images/image_pres2.png') }}" alt="Alphorn">
+				<div class="about-text-container">
+					<p class="about-text">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus urna quis suscipit convallis.
+						Praesent lobortis sagittis dapibus. Phasellus sed lacus orci. In hac habitasse platea dictumst.
+						In at pellentesque orci. Aenean feugiat sagittis diam, pellentesque posuere elit facilisis at.
+						Proin ac risus massa. Suspendisse consequat ac est quis ullamcorper. Vestibulum at sem nec odio
+						sodales ullamcorper nec non est. Mauris lobortis leo et enim aliquam, vitae mattis metus consequat.
+						Proin consectetur lacus nec velit vestibulum accumsan. Quisque volutpat faucibus nulla sed mattis.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
