@@ -50,6 +50,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\Column]
+    private ?bool $subscribed = null;
+
     public function __construct()
     {
         $this->fk_testimonial = new ArrayCollection();
@@ -192,6 +195,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function isSubscribed(): ?bool
+    {
+        return $this->subscribed;
+    }
+
+    public function setSubscribed(bool $subscribed): static
+    {
+        $this->subscribed = $subscribed;
 
         return $this;
     }
