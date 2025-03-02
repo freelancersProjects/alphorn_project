@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ trans('header_title_2', app.request.locale) }}
+{% endblock %}
+
+{% block body %}
+	<div class="main-accessorie">
+		<div class="text-center my-2">
+			<h1 class="global-title">{{ trans('header_title_2', app.request.locale) }}</h1>
+		</div>
+
+		{% if accessories|length > 0 %}
+			{# Add filter here #}
+			<div>Les filtres</div>
+
+			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
+				{% for accessorie in accessories %}
+					<div class="card">
+						<img src="{{ asset('images/' ~ accessorie.main_image) }}" class="card-img-top" alt="{{ accessorie.title }}">
+						<div class="card-content">
+							<h2 class="card-title">{{ accessorie.title }}</h2>
+							<p class="card-date my-1">Du : {{ accessorie.date_start }} - Au : {{ accessorie.date_end }}</p>
+							<p class="card-text">{{ accessorie.description }}</p>
+							<div class="text-center">
+								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<div class="text-center my-5">
+				<p>{{ trans('text_no_data_accessories', app.request.locale) }}</p>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
