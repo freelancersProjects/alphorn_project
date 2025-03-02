@@ -1,8 +1,27 @@
 {
-  "dependencies": {
-    "trumbowyg": "^2.30.0"
+  "name": "alphorn_project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
   },
-  "devDependencies": {
-    "file-loader": "^6.2.0"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freelancersProjects/alphorn_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freelancersProjects/alphorn_project/issues"
+  },
+  "homepage": "https://github.com/freelancersProjects/alphorn_project#readme",
+  "description": "",
+  "dependencies": {
+    "jquery": "^3.7.1",
+    "trumbowyg": "^2.30.0"
   }
 }
