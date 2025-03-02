@@ -37,6 +37,12 @@ class Course
     #[ORM\Column(type: Types::TEXT)]
     private ?string $image = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $difficulty = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $duration = null;
+
     public function __construct()
     {
         $this->courseBlocks = new ArrayCollection();
@@ -139,6 +145,30 @@ class Course
 
     public function __toString(): string {
         return $this->title;
+    }
+
+    public function getDifficulty(): ?string
+    {
+        return $this->difficulty;
+    }
+
+    public function setDifficulty(string $difficulty): static
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    public function getDuration(): ?string
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(string $duration): static
+    {
+        $this->duration = $duration;
+
+        return $this;
     }
 }
 

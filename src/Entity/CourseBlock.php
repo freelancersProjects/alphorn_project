@@ -18,17 +18,11 @@ class CourseBlock
     #[ORM\ManyToOne(inversedBy: 'courseBlocks')]
     private ?Course $course = null;
 
-    #[ORM\Column(enumType: CourseBlockType::class)]
-    private ?CourseBlockType $type = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
     #[ORM\Column]
     private ?int $page_number = null;
-
-    #[ORM\Column]
-    private ?int $block_order = null;
 
     public function getId(): ?int
     {
@@ -43,18 +37,6 @@ class CourseBlock
     public function setCourse(?Course $course): static
     {
         $this->course = $course;
-
-        return $this;
-    }
-
-    public function getType(): ?CourseBlockType
-    {
-        return $this->type;
-    }
-
-    public function setType(CourseBlockType $type): static
-    {
-        $this->type = $type;
 
         return $this;
     }
@@ -83,15 +65,4 @@ class CourseBlock
         return $this;
     }
 
-    public function getBlockOrder(): ?int
-    {
-        return $this->block_order;
-    }
-
-    public function setBlockOrder(int $block_order): static
-    {
-        $this->block_order = $block_order;
-
-        return $this;
-    }
 }

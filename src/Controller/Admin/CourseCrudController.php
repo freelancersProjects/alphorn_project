@@ -9,6 +9,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 class CourseCrudController extends AbstractCrudController {
     public static function getEntityFqcn(): string {
@@ -24,10 +27,37 @@ class CourseCrudController extends AbstractCrudController {
                 'Allemand' => 'de',
                 'Italien' => 'it',
             ]),
+            ChoiceField::new('difficulty', 'Difficulté')->setChoices([
+                'Difficile' => 'Hard',
+                'Moyen' => 'Medium',
+                'Facile' => 'Easy',
+            ]),
+            IntegerField::new('duration', 'Durée du cours')->setHelp('Entrez la durée en nombre entier'),
+            ChoiceField::new('duration_unit', 'Unité du cours')->setChoices([
+                'Minutes' => 'min',
+                'Heures' => 'h',
+            ])
+            ->setFormTypeOption('mapped', false)
+            ->onlyOnForms(),
             ImageField::new('image', 'Image du cours')->setUploadDir('public/images/')->setBasePath('images/'),
             DateTimeField::new('created_at', 'Date de création')
                 ->hideOnForm()
                 ->setFormTypeOption('disabled', true),
         ];
+    }
+
+    public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void {
+        if (!$entityInstance instanceof Course) return;
+
+        if(!$entityInstance->getCreatedAt()) {
+            $entityInstance->setCreatedAt(new \DateTimeImmutable());
+        }
+
+        $duration = $entityInstance->getDuration();
+        $unit = $this->getContext()->getRequest()->get('Course')['duration_unit'];
+        $entityInstance->setDuration($duration . '' . $unit);
+
+        $entityManager->persist($entityInstance);
+        $entityManager->flush();
     }
 }
