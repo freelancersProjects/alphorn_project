@@ -1,25 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+	{{ trans('account_creation', app.request.locale) }}
+{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
+	{% for flash_error in app.flashes('verify_email_error') %}
+		<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+	{% endfor %}
 
-    <h1>Register</h1>
+	{{ form_errors(registrationForm) }}
 
-    {{ form_errors(registrationForm) }}
+	{{ form_start(registrationForm, {'attr':{'class': 'form'}}) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.firstname) }}
-        {{ form_row(registrationForm.lastname) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+	    <h1>{{ trans('account_creation', app.request.locale) }}</h1>
 
-        <button type="submit" class="btn-global-green">Register</button>
-    {{ form_end(registrationForm) }}
+	    {{ form_widget(registrationForm.lastname) }}
+	    {{ form_widget(registrationForm.firstname) }}
+	    {{ form_widget(registrationForm.email) }}
+	    {{ form_widget(registrationForm.plainPassword) }}
+
+	    <p class="mb-1">
+	    	<a href="{{ path('app_login') }}">Déjà un compte ?</a>
+	    </p>
+
+	    <button type="submit" class="global-btn-green global-btn primary">{{ trans('btn_inscription', app.request.locale) }}</button>
+	{{ form_end(registrationForm) }}
 {% endblock %}
