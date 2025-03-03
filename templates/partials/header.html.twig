@@ -8,13 +8,17 @@
 		<nav class="navbar">
 			<ul>
 				<li><a href="#cours-en-ligne">{{ trans('header_title_1', app.request.locale) }}</a></li>
-				<li><a href="accessoires">{{ trans('header_title_2', app.request.locale) }}</a></li>
-				<li><a href="cor-hybrid">{{ trans('header_title_3', app.request.locale) }}</a></li>
-				<li><a href="stage">{{ trans('header_title_4', app.request.locale) }}</a></li>
-				<li><a href="actualites">{{ trans('header_title_5', app.request.locale) }}</a></li>
-				<li><a href="temoignages">{{ trans('header_title_6', app.request.locale) }}</a></li>
-				<li><a href="contact">{{ trans('header_title_7', app.request.locale) }}</a></li>
-				<li><a href="connexion">{{ trans('header_title_8', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_accessories') }}">{{ trans('header_title_2', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_hybrid_horn') }}">{{ trans('header_title_3', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_internship') }}">{{ trans('header_title_4', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_news') }}">{{ trans('header_title_5', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_testimonial') }}">{{ trans('header_title_6', app.request.locale) }}</a></li>
+				<li><a href="{{ path('app_contact') }}">{{ trans('header_title_7', app.request.locale) }}</a></li>
+				{% if app.user %}
+					<li><a href="{{ path('app_logout') }}">{{ trans('header_title_deconnection', app.request.locale) }}</a></li>
+				{% else %}
+					<li><a href="{{ path('app_login') }}">{{ trans('header_title_connection', app.request.locale) }}</a></li>
+				{% endif %}
 			</ul>
 		</nav>
 	</div>

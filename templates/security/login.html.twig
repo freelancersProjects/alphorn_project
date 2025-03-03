@@ -1,41 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}
+	{{ trans('header_title_connection', app.request.locale) }}
+{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+	<form method="post" class="form">
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
+		<h1 class="h3 mb-3 font-weight-normal">{{ trans('header_title_connection', app.request.locale) }}</h1>
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-
-        <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
-        >
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
-
-        <button class="btn-global-green" type="submit">
-            Sign in
-        </button>
-    </form>
+		<input type="email" value="{{ last_username }}" name="_username" id="username" placeholder="{{ trans('contact_us_email_form', app.request.locale) }}" class="form-control" autocomplete="email" required autofocus>
+		<input type="password" name="_password" id="password" placeholder="{{ trans('global_password', app.request.locale) }}" class="form-control" autocomplete="current-password" required>
+		
+        <div class="d-flex justify-content-between mb-2">
+			<p class="mt-3 mr-3">
+				<a href="#">Mot de passe oublié ?</a>
+			</p>
+			<p class="mt-3">
+				<a href="{{ path('app_register') }}">Pas encore inscrit ?</a>
+			</p>
+		</div>
+		
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+		<button class="global-btn-green global-btn primary" type="submit"> {{ trans('btn_connection', app.request.locale) }}</button>
+	</form>
 {% endblock %}

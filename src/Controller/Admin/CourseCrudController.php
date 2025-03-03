@@ -11,8 +11,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
+#[IsGranted('ROLE_ADMIN')]
 class CourseCrudController extends AbstractCrudController {
     public static function getEntityFqcn(): string {
         return Course::class;
