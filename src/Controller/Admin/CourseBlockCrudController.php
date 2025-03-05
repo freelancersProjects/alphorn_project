@@ -8,6 +8,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 
 #[IsGranted('ROLE_ADMIN')]
 class CourseBlockCrudController extends AbstractCrudController {
@@ -21,5 +23,11 @@ class CourseBlockCrudController extends AbstractCrudController {
             IntegerField::new('page_number', 'Numéro de page')->setHelp('Numéro de la page dans le cours'),
             TextEditorField::new('content', 'Contenu')->addCssClass('wysiwyg'),
         ];
+    }
+
+    public function configureAssets(Assets $assets): Assets
+    {
+        return $assets
+            ->addJsFile(Asset::new('/js/app.js'));
     }
 }
