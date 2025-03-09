@@ -46,9 +46,22 @@ class Course
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private $durationUnit;
 
+    /**
+     * @var Collection<int, User>
+     */
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'course_id')]
+    private Collection $user_id;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title_slug = null;
+
     public function __construct()
     {
         $this->courseBlocks = new ArrayCollection();
+        $this->user_id = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -182,6 +195,57 @@ class Course
     public function setDurationUnit(string $durationUnit): self
     {
         $this->durationUnit = $durationUnit;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserId(): Collection
+    {
+        return $this->user_id;
+    }
+
+    public function addUserId(User $userId): static
+    {
+        if (!$this->user_id->contains($userId)) {
+            $this->user_id->add($userId);
+            $userId->addCourseId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserId(User $userId): static
+    {
+        if ($this->user_id->removeElement($userId)) {
+            $userId->removeCourseId($this);
+        }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getTitleSlug(): ?string
+    {
+        return $this->title_slug;
+    }
+
+    public function setTitleSlug(string $title_slug): static
+    {
+        $this->title_slug = $title_slug;
+
         return $this;
     }
 }
