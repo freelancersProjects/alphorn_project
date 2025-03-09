@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')]
@@ -43,6 +44,7 @@ public function configureFields(string $pageName): iterable {
         DateTimeField::new('created_at', 'Date de création')
             ->hideOnForm()
             ->setFormTypeOption('disabled', true),
+        BooleanField::new('is_published', 'Publié'),
     ];
 }
 

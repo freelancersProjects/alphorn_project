@@ -55,6 +55,9 @@ class Course
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private ?bool $is_published = null;
+
     public function __construct()
     {
         $this->courseBlocks = new ArrayCollection();
@@ -230,6 +233,18 @@ class Course
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->is_published;
+    }
+
+    public function setIsPublished(bool $is_published): static
+    {
+        $this->is_published = $is_published;
 
         return $this;
     }
