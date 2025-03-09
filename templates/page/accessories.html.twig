@@ -20,7 +20,7 @@
 						<img src="{{ asset('images/uploads/' ~ accessorie.getMainImage()) }}" class="card-img-top" alt="{{ accessorie.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ accessorie.title }}</h2>
-							<p class="card-date my-1">Du : {{ accessorie.date_start }} - Au : {{ accessorie.date_end }}</p>
+							<p class="card-date my-1">{{ accessorie.date|date('d M Y') }}</p>
 							<p class="card-text">{{ accessorie.description }}</p>
 							<div class="text-center">
 								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>

@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\AccessoriesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: AccessoriesRepository::class)]
+#[Vich\Uploadable]
 class Accessories
 {
     #[ORM\Id]
@@ -20,20 +23,35 @@ class Accessories
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 500)]
+    #[ORM\Column(length: 500, nullable: true)]
     private ?string $main_image = null;
+
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'main_image')]
+    private ?File $main_image_file_accessories = null;
 
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $first_image = null;
 
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'first_image')]
+    private ?File $image_first_file_accessories = null;
+
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $second_image = null;
+
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'second_image')]
+    private ?File $image_second_file_accessories = null;
 
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $third_image = null;
 
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'third_image')]
+    private ?File $image_third_file_accessories = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     public function getId(): ?int
     {
@@ -69,9 +87,25 @@ class Accessories
         return $this->main_image;
     }
 
-    public function setMainImage(string $main_image): static
+    public function setMainImage(?string $main_image): static
     {
         $this->main_image = $main_image;
+
+        return $this;
+    }
+
+    public function getMainImageFileAccessories(): ?File
+    {
+        return $this->main_image_file_accessories;
+    }
+
+    public function setMainImageFileAccessories(?File $main_image_file_accessories = null): static
+    {
+        $this->main_image_file_accessories = $main_image_file_accessories;
+
+        if ($main_image_file_accessories) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -88,6 +122,22 @@ class Accessories
         return $this;
     }
 
+    public function getImageFirstFileAccessories(): ?File
+    {
+        return $this->image_first_file_accessories;
+    }
+
+    public function setImageFirstFileAccessories(?File $image_first_file_accessories = null): static
+    {
+        $this->image_first_file_accessories = $image_first_file_accessories;
+
+        if ($image_first_file_accessories) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
     public function getSecondImage(): ?string
     {
         return $this->second_image;
@@ -96,6 +146,22 @@ class Accessories
     public function setSecondImage(?string $second_image): static
     {
         $this->second_image = $second_image;
+
+        return $this;
+    }
+
+    public function getImageSecondFileAccessories(): ?File
+    {
+        return $this->image_second_file_accessories;
+    }
+
+    public function setImageSecondFileAccessories(?File $image_second_file_accessories = null): static
+    {
+        $this->image_second_file_accessories = $image_second_file_accessories;
+
+        if ($image_second_file_accessories) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -112,6 +178,22 @@ class Accessories
         return $this;
     }
 
+    public function getImageThirdFileAccessories(): ?File
+    {
+        return $this->image_third_file_accessories;
+    }
+
+    public function setImageThirdFileAccessories(?File $image_third_file_accessories = null): static
+    {
+        $this->image_third_file_accessories = $image_third_file_accessories;
+
+        if ($image_third_file_accessories) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
@@ -120,6 +202,18 @@ class Accessories
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
