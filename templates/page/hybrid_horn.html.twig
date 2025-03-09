@@ -23,7 +23,7 @@
 					</p>
 					<div class="about-buttons">
 						<button class="global-btn-green global-btn primary">{{ trans('about_us_courses_button', app.request.locale) }}</button>
-						<button class="global-btn-beige global-btn secondary">{{ trans('header_title_4', app.request.locale) }}</button>
+						<a href="{{ path('app_internship') }}" class="global-btn-beige global-btn secondary">{{ trans('header_title_4', app.request.locale) }}</a>
 					</div>
 				</div>
 				<img class="about-image" src="{{ asset('images/image_pres1.png') }}" alt="Alphorn">

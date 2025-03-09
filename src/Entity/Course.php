@@ -40,8 +40,11 @@ class Course
     #[ORM\Column(length: 255)]
     private ?string $difficulty = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $duration = null;
+    #[ORM\Column(nullable: false)]
+    private ?int $duration = null;
+
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    private $durationUnit;
 
     public function __construct()
     {
@@ -168,6 +171,17 @@ class Course
     {
         $this->duration = $duration;
 
+        return $this;
+    }
+
+  public function getDurationUnit(): ?string
+    {
+        return $this->durationUnit;
+    }
+
+    public function setDurationUnit(string $durationUnit): self
+    {
+        $this->durationUnit = $durationUnit;
         return $this;
     }
 }

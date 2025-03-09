@@ -20,7 +20,7 @@
 				</p>
 				<div class="about-buttons">
 					<button class="global-btn-green global-btn primary">{{ trans('about_us_courses_button', app.request.locale) }}</button>
-					<button class="global-btn-beige global-btn secondary">{{ trans('about_us_cor_hybrid_button', app.request.locale) }}</button>
+					<a href="{{ path('app_hybrid_horn') }}" class="global-btn-beige global-btn secondary">{{ trans('about_us_cor_hybrid_button', app.request.locale) }}</a>
 				</div>
 			</div>
 			<img class="about-image" src="{{ asset('images/image_pres1.png') }}" alt="Alphorn">
@@ -40,8 +40,8 @@
 					Proin consectetur lacus nec velit vestibulum accumsan. Quisque volutpat faucibus nulla sed mattis.
 				</p>
 				<div class="about-buttons right">
-					<button class="global-btn-beige global-btn secondary">{{ trans('about_us_testimoniale_button', app.request.locale) }}</button>
-					<button class="global-btn-green global-btn primary">{{ trans('about_us_accessory_button', app.request.locale) }}</button>
+					<a href="{{ path('app_testimonial') }}" class="global-btn-beige global-btn secondary">{{ trans('about_us_testimoniale_button', app.request.locale) }}</a>
+					<a href="{{ path('app_accessories') }}" class="global-btn-green global-btn primary">{{ trans('about_us_accessory_button', app.request.locale) }}</a>
 				</div>
 			</div>
 		</div>
