@@ -17,10 +17,10 @@
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
 				{% for new in news %}
 					<div class="card">
-						<img src="{{ asset('images/' ~ new.main_image) }}" class="card-img-top" alt="{{ new.title }}">
+						<img src="{{ asset('images/uploads/' ~ new.getMainImage()) }}" class="card-img-top" alt="{{ new.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ new.title }}</h2>
-							<p class="card-date mb-1">{{ new.date }}</p>
+							<p class="card-date mb-1">{{ new.date|date('d M Y') }}</p>
 							<p class="card-text">{{ new.description }}</p>
 							<div class="text-center">
 								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1 class="global-title">Ajouter un témoignage</h1>
+
+	<div class="form-container">
+		{{ form_start(testimonialForm, {'attr': {'class': 'testimonial-form'}}) }}
+
+		{{ form_row(testimonialForm.title, {'attr': {'class': 'form-control'}}) }}
+		{{ form_row(testimonialForm.description, {'attr': {'class': 'form-control'}}) }}
+		{{ form_row(testimonialForm.main_image, {'attr': {'class': 'form-control'}}) }}
+
+		<button type="submit" class="global-btn-green global-btn primary">
+			Envoyer mon témoignage
+		</button>
+
+		{{ form_end(testimonialForm) }}
+	</div>
+{% endblock %}
+

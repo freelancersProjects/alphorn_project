@@ -1,0 +1,29 @@
+.form-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-form input,
+.testimonial-form textarea,
+.testimonial-form button {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.global-btn-green {
+    background-color: var(--forest-green);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.global-btn-green:hover {
+    background-color: #217a4b;
+}

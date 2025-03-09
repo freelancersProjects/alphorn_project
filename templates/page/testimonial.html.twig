@@ -10,7 +10,7 @@
 		<div class="text-center my-2">
 			<h1 class="global-title">{{ trans('header_title_6', app.request.locale) }}</h1>
 		</div>
-
+		<a href="{{ path('app_add_testimonial') }}" class="global-btn-green global-btn secondary no-border">{{ trans('add_testimonial_button', app.request.locale) }}</a>
 		{% if testimonials|length > 0 %}
 			{# Add filter here #}
 			<div>Les filtres</div>
@@ -18,10 +18,10 @@
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
 				{% for testimonial in testimonials %}
 					<div class="card">
-						<img src="{{ asset('images/' ~ testimonial.main_image) }}" class="card-img-top" alt="{{ testimonial.title }}">
+						<img src="{{ asset('images/uploads/' ~ testimonial.getMainImage()) }}" class="card-img-top" alt="{{ testimonial.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ testimonial.title }}</h2>
-							<p class="card-date mb-1">{{ testimonial.date }}</p>
+							<p class="card-date mb-1">{{ testimonial.date|date('d M Y') }}</p>
 							<p class="card-text">{{ testimonial.description }}</p>
 							<div class="text-center">
 								<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>

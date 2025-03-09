@@ -278,6 +278,11 @@ body {
   line-height: normal;
 }
 
+.no-border {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
 .btn-card:hover {
   background-color: var(--saddle-brown);
   transform: scale(1.1);

@@ -18,7 +18,7 @@
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
 				{% for internship in internships %}
 					<div class="card">
-						<img src="{{ asset('images/' ~ intership.main_image) }}" class="card-img-top" alt="{{ internship.title }}">
+						<img src="{{ asset('images/uploads/' ~ intership.getMainImage()) }}" class="card-img-top" alt="{{ internship.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ internship.title }}</h2>
 							<p class="card-date my-1">Du : {{ internship.date_start }} - Au : {{ internship.date_end }}</p>
