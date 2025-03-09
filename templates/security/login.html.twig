@@ -14,16 +14,16 @@
 
 		<input type="email" value="{{ last_username }}" name="_username" id="username" placeholder="{{ trans('contact_us_email_form', app.request.locale) }}" class="form-control" autocomplete="email" required autofocus>
 		<input type="password" name="_password" id="password" placeholder="{{ trans('global_password', app.request.locale) }}" class="form-control" autocomplete="current-password" required>
-		
+
         <div class="d-flex justify-content-between mb-2">
 			<p class="mt-3 mr-3">
-				<a href="#">Mot de passe oublié ?</a>
+				<a href="#">{{ trans('forgot_password', app.request.locale) }}</a>
 			</p>
 			<p class="mt-3">
-				<a href="{{ path('app_register') }}">Pas encore inscrit ?</a>
+				<a href="{{ path('app_register') }}">{{ trans('not_signup', app.request.locale) }}</a>
 			</p>
 		</div>
-		
+
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 		<button class="global-btn-green global-btn primary" type="submit"> {{ trans('btn_connection', app.request.locale) }}</button>
 	</form>

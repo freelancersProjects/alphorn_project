@@ -17,7 +17,7 @@
 			<div class="card-container justify-content-center align-items-center flex-wrap mb-5">
 				{% for accessorie in accessories %}
 					<div class="card">
-						<img src="{{ asset('images/' ~ accessorie.main_image) }}" class="card-img-top" alt="{{ accessorie.title }}">
+						<img src="{{ asset('images/uploads/' ~ accessorie.getMainImage()) }}" class="card-img-top" alt="{{ accessorie.title }}">
 						<div class="card-content">
 							<h2 class="card-title">{{ accessorie.title }}</h2>
 							<p class="card-date my-1">Du : {{ accessorie.date_start }} - Au : {{ accessorie.date_end }}</p>
