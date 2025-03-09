@@ -43,7 +43,8 @@ class TestimonialCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_second_file_testimonial', 'Deuxième image du témoignage')
                 ->setFormType(VichImageType::class)
@@ -52,7 +53,8 @@ class TestimonialCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_third_file_testimonial', 'Troisième image du témoignage')
                 ->setFormType(VichImageType::class)
@@ -61,7 +63,8 @@ class TestimonialCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
             
             AssociationField::new('fk_id_user', 'Utilisateurs')
                 ->formatValue(function ($value, $entity) {

@@ -46,7 +46,8 @@ class InternshipCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_second_file_internship', 'Deuxième image du stage')
                 ->setFormType(VichImageType::class)
@@ -55,7 +56,8 @@ class InternshipCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_third_file_internship', 'Troisième image du stage')
                 ->setFormType(VichImageType::class)
@@ -64,7 +66,8 @@ class InternshipCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
             
             DateTimeField::new('updated_at', 'Date de mise à jour')
                 ->hideOnForm()

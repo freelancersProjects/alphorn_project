@@ -42,7 +42,8 @@ class NewsCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_second_file_news', 'Deuxième image de l\'actualité')
                 ->setFormType(VichImageType::class)
@@ -51,7 +52,8 @@ class NewsCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             TextField::new('image_third_file_news', 'Troisième image de l\'actualité')
                 ->setFormType(VichImageType::class)
@@ -60,7 +62,8 @@ class NewsCrudController extends AbstractCrudController
                     'download_uri' => false,
                     'image_uri' => true,
                     'asset_helper' => true,
-                ]),
+                ])
+                ->hideOnIndex(),
 
             DateTimeField::new('date', 'Date de création')
                 ->hideOnForm()
