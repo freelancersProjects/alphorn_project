@@ -55,9 +55,6 @@ class Course
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title_slug = null;
-
     public function __construct()
     {
         $this->courseBlocks = new ArrayCollection();
@@ -233,18 +230,6 @@ class Course
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
-        return $this;
-    }
-
-    public function getTitleSlug(): ?string
-    {
-        return $this->title_slug;
-    }
-
-    public function setTitleSlug(string $title_slug): static
-    {
-        $this->title_slug = $title_slug;
 
         return $this;
     }

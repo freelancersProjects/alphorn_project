@@ -24,6 +24,9 @@ class CourseBlock
     #[ORM\Column]
     private ?int $page_number = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title_slug = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -65,4 +68,15 @@ class CourseBlock
         return $this;
     }
 
+    public function getTitleSlug(): ?string
+    {
+        return $this->title_slug;
+    }
+
+    public function setTitleSlug(string $title_slug): static
+    {
+        $this->title_slug = $title_slug;
+
+        return $this;
+    }
 }
