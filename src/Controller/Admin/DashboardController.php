@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Accessories;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -14,6 +15,7 @@ use App\Entity\Internship;
 use App\Entity\Translation;
 use App\Entity\Course;
 use App\Entity\CourseBlock;
+use App\Entity\Testimonial;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_ADMIN')]
@@ -43,10 +45,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Cours', 'fas fa-book', Course::class);
         yield MenuItem::linkToCrud('Structure Cours', 'fas fa-swatchbook', CourseBlock::class);
 
-        yield MenuItem::section('Actualités/Témoignages');
+        yield MenuItem::section('Contenu intéractif');
         yield MenuItem::linkToCrud('Les actualités', 'fas fa-newspaper', News::class);
-        yield MenuItem::linkToCrud('Les témoignages', 'fas fa-comments', Internship::class);
-
+        yield MenuItem::linkToCrud('Les témoignages', 'fas fa-comments', Testimonial::class);
+        yield MenuItem::linkToCrud('Les stages', 'fas fa-briefcase', Internship::class);
+        yield MenuItem::linkToCrud('Les accessoires', 'fas fa-music', Accessories::class);
 
         yield MenuItem::section('Traductions');
         yield MenuItem::linkToCrud('Les traductions', 'fas fa-language', Translation::class);
