@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\News;
+use App\Entity\Accessories;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
@@ -12,21 +12,21 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 #[IsGranted('ROLE_ADMIN')]
-class NewsCrudController extends AbstractCrudController
+class AccessoriesCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return News::class;
+        return Accessories::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title', 'Titre de l\'actualité'),
+            TextField::new('title', 'Titre de l\'accessoire'),
 
             TextareaField::new('description', 'Description')->setHelp('Ajoutez une description détaillée'),
 
-            TextField::new('main_image_file_news', 'Image principale de l\'actualité')
+            TextField::new('main_image_file_accessories', 'Image principale de l\'accessoire')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -35,7 +35,7 @@ class NewsCrudController extends AbstractCrudController
                     'asset_helper' => true,
                 ]),
 
-            TextField::new('image_first_file_news', 'Première image de l\'actualité')
+            TextField::new('image_first_file_accessories', 'Première image de l\'accessoire')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -45,7 +45,7 @@ class NewsCrudController extends AbstractCrudController
                 ])
                 ->hideOnIndex(),
 
-            TextField::new('image_second_file_news', 'Deuxième image de l\'actualité')
+            TextField::new('image_second_file_accessories', 'Deuxième image de l\'accessoire')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -55,7 +55,7 @@ class NewsCrudController extends AbstractCrudController
                 ])
                 ->hideOnIndex(),
 
-            TextField::new('image_third_file_news', 'Troisième image de l\'actualité')
+            TextField::new('image_third_file_accessories', 'Troisième image de l\'accessoire')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -77,7 +77,7 @@ class NewsCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof News) return;
+        if (!$entityInstance instanceof Accessories) return;
 
         if (!$entityInstance->getDate()) {
             $entityInstance->setDate(new \DateTimeImmutable());

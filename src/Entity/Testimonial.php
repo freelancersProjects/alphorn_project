@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\TestimonialRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: TestimonialRepository::class)]
+#[Vich\Uploadable]
 class Testimonial
 {
     #[ORM\Id]
@@ -23,20 +26,35 @@ class Testimonial
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $main_image = null;
 
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'main_image')]
+    private ?File $main_image_file_testimonial = null;
+
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $first_image = null;
+
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'first_image')]
+    private ?File $image_first_file_testimonial = null;
 
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $second_image = null;
 
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'second_image')]
+    private ?File $image_second_file_testimonial = null;
+
     #[ORM\Column(length: 500, nullable: true)]
     private ?string $third_image = null;
+
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'third_image')]
+    private ?File $image_third_file_testimonial = null;
 
     #[ORM\ManyToOne(inversedBy: 'fk_testimonial')]
     private ?User $fk_id_user = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     public function getId(): ?int
     {
@@ -79,6 +97,22 @@ class Testimonial
         return $this;
     }
 
+    public function getMainImageFileTestimonial(): ?File
+    {
+        return $this->main_image_file_testimonial;
+    }
+
+    public function setMainImageFileTestimonial(?File $main_image_file_testimonial = null): static
+    {
+        $this->main_image_file_testimonial = $main_image_file_testimonial;
+
+        if ($main_image_file_testimonial) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
     public function getFirstImage(): ?string
     {
         return $this->first_image;
@@ -87,6 +121,22 @@ class Testimonial
     public function setFirstImage(?string $first_image): static
     {
         $this->first_image = $first_image;
+
+        return $this;
+    }
+
+    public function getImageFirstFileTestimonial(): ?File
+    {
+        return $this->image_first_file_testimonial;
+    }
+
+    public function setImageFirstFileTestimonial(?File $image_first_file_testimonial = null): static
+    {
+        $this->image_first_file_testimonial = $image_first_file_testimonial;
+
+        if ($image_first_file_testimonial) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -103,6 +153,22 @@ class Testimonial
         return $this;
     }
 
+    public function getImageSecondFileTestimonial(): ?File
+    {
+        return $this->image_second_file_testimonial;
+    }
+
+    public function setImageSecondFileTestimonial(?File $image_second_file_testimonial = null): static
+    {
+        $this->image_second_file_testimonial = $image_second_file_testimonial;
+
+        if ($image_second_file_testimonial) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
     public function getThirdImage(): ?string
     {
         return $this->third_image;
@@ -111,6 +177,22 @@ class Testimonial
     public function setThirdImage(?string $third_image): static
     {
         $this->third_image = $third_image;
+
+        return $this;
+    }
+
+    public function getImageThirdFileTestimonial(): ?File
+    {
+        return $this->image_third_file_testimonial;
+    }
+
+    public function setImageThirdFileTestimonial(?File $image_third_file_testimonial = null): static
+    {
+        $this->image_third_file_testimonial = $image_third_file_testimonial;
+
+        if ($image_third_file_testimonial) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -137,5 +219,22 @@ class Testimonial
         $this->date = $date;
 
         return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getFkIdUser() ? ($this->getFkIdUser()->getFirstname() . ' ' . $this->getFkIdUser()->getLastname()) : 'Utilisateur inconnu';
     }
 }

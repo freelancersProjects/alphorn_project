@@ -7,8 +7,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
+#[Vich\Uploadable]
 class Course
 {
     #[ORM\Id]
@@ -34,8 +37,11 @@ class Course
     #[ORM\OneToMany(targetEntity: CourseBlock::class, mappedBy: 'course')]
     private Collection $courseBlocks;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 't_content_images', fileNameProperty: 'image')]
+    private ?File $image_file_course = null;
 
     #[ORM\Column(length: 255)]
     private ?string $difficulty = null;
@@ -57,6 +63,9 @@ class Course
 
     #[ORM\Column(type: Types::BOOLEAN)]
     private ?bool $is_published = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updated_at = null;
 
     public function __construct()
     {
@@ -152,14 +161,31 @@ class Course
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
         return $this;
     }
 
-    public function __toString(): string {
+    public function getImageFileCourse(): ?File
+    {
+        return $this->image_file_course;
+    }
+
+    public function setImageFileCourse(?File $image_file_course = null): static
+    {
+        $this->image_file_course = $image_file_course;
+
+        if ($image_file_course) {
+            $this->updated_at = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
         return $this->title;
     }
 
@@ -187,7 +213,7 @@ class Course
         return $this;
     }
 
-  public function getDurationUnit(): ?string
+    public function getDurationUnit(): ?string
     {
         return $this->durationUnit;
     }
@@ -248,5 +274,16 @@ class Course
 
         return $this;
     }
-}
 
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): static
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+}

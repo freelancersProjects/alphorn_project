@@ -2,9 +2,10 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\News;
+use App\Entity\Testimonial;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -12,21 +13,21 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 #[IsGranted('ROLE_ADMIN')]
-class NewsCrudController extends AbstractCrudController
+class TestimonialCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return News::class;
+        return Testimonial::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('title', 'Titre de l\'actualité'),
-
+            TextField::new('title', 'Titre du témoignage'),
+            
             TextareaField::new('description', 'Description')->setHelp('Ajoutez une description détaillée'),
 
-            TextField::new('main_image_file_news', 'Image principale de l\'actualité')
+            TextField::new('main_image_file_testimonial', 'Image principale du témoignage')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -35,7 +36,7 @@ class NewsCrudController extends AbstractCrudController
                     'asset_helper' => true,
                 ]),
 
-            TextField::new('image_first_file_news', 'Première image de l\'actualité')
+            TextField::new('image_first_file_testimonial', 'Première image du témoignage')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -45,7 +46,7 @@ class NewsCrudController extends AbstractCrudController
                 ])
                 ->hideOnIndex(),
 
-            TextField::new('image_second_file_news', 'Deuxième image de l\'actualité')
+            TextField::new('image_second_file_testimonial', 'Deuxième image du témoignage')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -55,7 +56,7 @@ class NewsCrudController extends AbstractCrudController
                 ])
                 ->hideOnIndex(),
 
-            TextField::new('image_third_file_news', 'Troisième image de l\'actualité')
+            TextField::new('image_third_file_testimonial', 'Troisième image du témoignage')
                 ->setFormType(VichImageType::class)
                 ->setFormTypeOptions([
                     'allow_delete' => false,
@@ -64,6 +65,12 @@ class NewsCrudController extends AbstractCrudController
                     'asset_helper' => true,
                 ])
                 ->hideOnIndex(),
+            
+            AssociationField::new('fk_id_user', 'Utilisateurs')
+                ->formatValue(function ($value, $entity) {
+                    return $entity->getFkIdUser() ? ($entity->getFkIdUser()->getFirstname() . ' ' . $entity->getFkIdUser()->getLastname()) : 'Utilisateur inconnu';
+                })
+                ->setFormTypeOptions(['disabled' => true]),
 
             DateTimeField::new('date', 'Date de création')
                 ->hideOnForm()
@@ -77,7 +84,7 @@ class NewsCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if (!$entityInstance instanceof News) return;
+        if (!$entityInstance instanceof Testimonial) return;
 
         if (!$entityInstance->getDate()) {
             $entityInstance->setDate(new \DateTimeImmutable());
