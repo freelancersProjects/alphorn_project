@@ -1,7 +1,88 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+	<div class="profile-container">
+		<h1 class="profile-title">Mon compte</h1>
 
-test
+		<div class="profile-info-container">
+			<div class="profile-header">
+				<h2>Informations utilisateur</h2>
+				<a href="#" class="profile-btn">Modifier mot de passe</a>
+			</div>
 
+			{{ form_start(profileForm, {'attr': {'class': 'profile-form'}}) }}
+			<div class="form-group">
+				{{ form_row(profileForm.firstname) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(profileForm.lastname) }}
+			</div>
+
+			<div class="form-group">
+				{{ form_row(profileForm.email) }}
+			</div>
+
+			<div class="form-group">
+				<label for="subscription">Abonnement :</label>
+				<div class="subscription-status">
+					{{ user.subscribed ? 'Premium' : 'Free' }}
+                    {% if user.subscribed %}
+                        <a href="#" class="unsubscribe-link">Se désabonner</a>
+                    {% endif %}
+				</div>
+			</div>
+
+			<button type="submit" class="global-btn-green profile-save-btn">
+				Enregistrer les modifications
+			</button>
+			{{ form_end(profileForm) }}
+		</div>
+		<h2 class="profile-section-title">Mes témoignages</h2>
+		<div class="card-container">
+			{% for testimonial in testimonials %}
+				<div class="card">
+					<img src="{{ asset('images/uploads/' ~ testimonial.getMainImage()) }}" class="card-img-top" alt="{{ testimonial.title }}">
+					<div class="card-content">
+						<h2 class="card-title">{{ testimonial.title }}</h2>
+						<p class="card-date">{{ testimonial.date|date('d M Y') }}</p>
+						<p class="card-text">{{ testimonial.description }}</p>
+						<button class="btn-card">{{ trans('btn_next_read', app.request.locale) }}</button>
+					</div>
+				</div>
+			{% else %}
+				<p class="no-data">{{ trans('text_no_data_testimonials', app.request.locale) }}</p>
+			{% endfor %}
+		</div>
+
+		<h2 class="profile-section-title">Mes cours suivis</h2>
+		<div class="course-cards-container">
+			{% for course in courses %}
+				<a href="{{ path('app_login', { id: course.id, page: 1 }) }}" class="course-card">
+					<div class="course-card-image">
+						<img src="{{ asset('images/' ~ course.image) }}" alt="Image du cours">
+					</div>
+					<div class="course-card-content">
+						<span class="course-category">{{ course.language|upper }}
+							- COURS</span>
+						<h2 class="course-title-card">{{ course.title }}</h2>
+						<div class="course-meta">
+							<span>
+								<i class="fas fa-signal"></i>
+								{{ course.difficulty }}
+							</span>
+							<span>
+								<i class="far fa-clock"></i>
+								{{ course.duration }}
+								{{ course.duration_unit }}
+							</span>
+						</div>
+						<p class="course-description">{{ course.description }}</p>
+					</div>
+				</a>
+			{% else %}
+				<p class="no-data">{{ trans('text_no_data_courses', app.request.locale) }}</p>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

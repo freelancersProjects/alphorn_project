@@ -2,12 +2,19 @@
 
 namespace App\Controller;
 
-use App\Repository\UserRepository;
+use App\Entity\User;
+use App\Form\ProfileFormType;
+use App\Repository\CourseRepository;
+use App\Repository\TestimonialRepository;
 use App\Service\TranslationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER')]
 class ProfileController extends AbstractController
 {
     private $translationService;
@@ -18,12 +25,33 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/profile', name: 'app_profile')]
-    public function index(UserRepository $userRepository): Response
-    {
-        $users = $userRepository->findAll();
+    public function index(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        TestimonialRepository $testimonialRepository,
+        CourseRepository $courseRepository
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $profileForm = $this->createForm(ProfileFormType::class, $user);
+        $profileForm->handleRequest($request);
+
+        if ($profileForm->isSubmitted() && $profileForm->isValid()) {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            $this->addFlash('success', 'Les informations de votre profil ont été mises à jour.');
+            return $this->redirectToRoute('app_profile');
+        }
+
+        $testimonials = $testimonialRepository->findBy(['fk_id_user' => $user->getId()]);
+        $courses = $courseRepository->findCoursesByUser($user);
 
         return $this->render('page/profile.html.twig', [
-            'users' => $users,
+            'profileForm' => $profileForm->createView(),
+            'testimonials' => $testimonials,
+            'courses' => $courses,
+            'user' => $user,
         ]);
     }
 }

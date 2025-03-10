@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	S'abonner - Alphorn Project
+{% endblock %}
+
+{% block body %}
+	<div class="subscription-container">
+		<h1 class="subscription-title">Choisissez votre abonnement</h1>
+
+		<p class="subscription-description">
+			Profitez pleinement de nos cours en ligne ! Passez à un abonnement
+			<strong>Premium</strong>
+			pour débloquer un accès illimité à tous nos cours et bénéficiez de contenus exclusifs !
+		</p>
+
+		<div
+			class="subscription-cards">
+			<div class="subscription-card free-plan">
+				<h2 class="plan-title">Abonnement<br>Free</h2>
+				<p class="plan-price">Gratuit</p>
+				<ul class="plan-features">
+					<li>Non Accès aux cours</li>
+					<li>Accès aux actualités et témoignages</li>
+					<li>Aucune carte bancaire requise</li>
+				</ul>
+				<a href="{{ path('app_profile') }}" class="btn-subscribe free">Déjà abonné</a>
+			</div>
+
+			<div class="subscription-card premium-plan">
+				<h2 class="plan-title">Abonnement Premium</h2>
+				<p class="plan-price">29,99 € / mois</p>
+				<ul class="plan-features">
+					<li>Accès illimité à tous les cours</li>
+					<li>Contenus exclusifs & priorités sur les nouveautés</li>
+					<li>Support personnalisé</li>
+				</ul>
+				<a href="#" class="btn-subscribe premium">Passer en Premium</a>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+

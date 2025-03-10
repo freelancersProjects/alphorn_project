@@ -25,5 +25,5 @@
 }
 
 .global-btn-green:hover {
-    background-color: #217a4b;
+    background-color: var(--forest-green-hover);
 }
